@@ -36,7 +36,7 @@ function updateCooldown(specific) {
 
 function getCooldownTimeLeft(specific, time) {
     if (!cooldowns[specific]) {
-        return 0;
+        return 0
     }
     const timepassed = Date.now() - cooldowns[specific]
     const timeleft = time - timepassed
@@ -49,9 +49,9 @@ function setJSONFile(path, content) {
 
 function addCollectionData(object, layone, laytwo) {
   if (_.has(object, layone)) {
-    object[layone].push(laytwo);
+    object[layone].push(laytwo)
   } else {
-    _.set(object, layone, [laytwo]);
+    _.set(object, layone, [laytwo])
   }
 }
 
@@ -69,18 +69,18 @@ socket.on("message", function (data) {
 			if (!saveData.hasOwnProperty(data.home) || !saveData[data.home].includes(obtained)) {
 				addCollectionData(saveData, data.home, obtained)
 				setJSONFile('./collectdata.json', saveData)
-				socket.send('You got ' + obtained);
+				socket.send('You got ' + obtained)
 			} else {
-				socket.send('You already obtained ' + obtained);
+				socket.send('You already obtained ' + obtained)
 			}
 		} else {
 			socket.send(Math.floor(getCooldownTimeLeft('coll' + data.home, 180000) / 1000) + ' seconds left')
 		}
 	}
 	if (data.msg.toLowerCase().match(/^coll!dex(?:\s(.*))?$/i)) {
-		let chosenHome;
+		let chosenHome
 		if (data.msg.toLowerCase().match(/^coll!dex(?:\s(.*))?$/i)[1]) {
-			chosenHome = data.msg.match(/^coll!dex(?:\s(.*))?$/i)[1];
+			chosenHome = data.msg.match(/^coll!dex(?:\s(.*))?$/i)[1]
 		} else {
 			chosenHome = data.home
 		}
