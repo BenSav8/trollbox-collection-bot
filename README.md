@@ -15,4 +15,4 @@ this template has three main commands:
 you have to put your collectables in collectables.json, like how it is initially structured
 you may also adjust the script to work / be consistent with your bot
 ***
-# ==***have fun :3***==
+# ***have fun :3***
